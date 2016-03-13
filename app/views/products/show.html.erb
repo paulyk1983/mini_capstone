@@ -1,0 +1,30 @@
+<div class='well product'>
+  <div class='row'>
+    <div class='col-xs-12 col-sm-4 col-md-3'>
+      <img class='img-responsive' src='<%= @product.image %>'>
+    </div>
+    <div class='col-xs-12 col-sm-8 col-md-9'>
+      <h2><%= @product.name %></h2>
+      <p><strong>Price:</strong> $<%= @product.price %>.00</p>
+      <p><strong>Description:</strong> <%= @product.description %></p>
+      <button class="btn btn-success" type="submit">Buy Now</button>
+    </div>
+  </div>
+</div>
+<div class='well product'>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <div style='padding:20px; display:inline'>
+        <!-- <%= link_to "Edit this product", "/products/#{@product.id}/edit" %> -->
+        <a class='btn btn-larg btn-warning' href='/products/<%= @product.id %>/edit'>Edit</a>
+      </div>
+      <div style='padding:20px; display:inline'>
+        <!-- <%= link_to "Delete this product", "/products/#{@product.id}", method: :delete %> -->
+        <a class="btn btn-large btn-danger" rel="nofollow" data-method="delete" href="/products/<%= @product.id %>">Delete</a>
+      </div>
+      <div style='padding:20px; display:inline'>
+        <a class='btn btn-large btn-info' href='/products'>Back to Index</a>
+      </div>
+    </div>
+  </div>
+</div>
