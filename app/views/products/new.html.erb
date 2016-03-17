@@ -1,6 +1,10 @@
 <h1>Add a New Product</h1>
 <%= form_tag '/products' do %>
   <div>
+    <%= label_tag :title %>
+    <%= text_field_tag :title %>
+  </div>
+  <div>
     <%= label_tag :name %>
     <%= text_field_tag :name %>
   </div>
