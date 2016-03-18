@@ -6,3 +6,6 @@ Product.create!([
   {name: "lwknot4stringDw", price: 35, image: "https://s3.amazonaws.com/ls-account-data-3-us-east-1/store-finish-line-custom-finishing-53e922c767901/themes/boxie/resources/img/elastic-loops/cotton-hang-tag-loop-white-3.jpg", description: "1/32 inch by 4 inch white string loop with knot"},
   {name: "lwknot3.5elDb", price: 25, image: "https://s3.amazonaws.com/ls-account-data-3-us-east-1/store-finish-line-custom-finishing-53e922c767901/themes/boxie/resources/img/elastic-loops/standard-hang-tag-loop-black-3.jpg", description: "1/32 inch by 3.5 inch white elastic loop with knot"}
 ])
+
+Supplier.destroy_all
+Supplier.create!({name: "Papillon", email: "info@papillon.com", phone: "555-555-5555"})
