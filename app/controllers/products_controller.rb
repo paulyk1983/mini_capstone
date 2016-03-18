@@ -15,8 +15,11 @@ class ProductsController < ApplicationController
   end
 
   def show
-    product_id = params[:id]
-    @product = Product.find_by(id: product_id)
+    if params[:id] == 'random'
+      products = Product.all
+      @product = product.sample
+    else
+    @product = Product.find_by(id: params[:id])
     render 'show.html.erb'
   end
 
@@ -59,4 +62,10 @@ class ProductsController < ApplicationController
     flash[:success] = 'Product has been deleted'
     redirect_to '/products'
   end
+
+  #def run_search
+   # search_term = params[:search]
+   # @products = Product.where("name LIKE ?", "%#{ search_term }%")
+   # render 'index.html.erb'
+  #end
 end
