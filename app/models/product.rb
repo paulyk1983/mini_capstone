@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+  belongs_to :supplier
+
   def friendly_updated_at
     updated_at.strftime("%b %e, %l:%M %p")
   end
