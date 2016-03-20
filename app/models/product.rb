@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :supplier
+  has_many :images
 
   def friendly_updated_at
     updated_at.strftime("%b %e, %l:%M %p")

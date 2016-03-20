@@ -19,7 +19,8 @@ class ProductsController < ApplicationController
       products = Product.all
       @product = product.sample
     else
-    @product = Product.find_by(id: params[:id])
+      @product = Product.find_by(id: params[:id])
+    end
     render 'show.html.erb'
   end
 
