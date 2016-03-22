@@ -1,15 +1,15 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
-    sort_attribute = params[:sort]
+    sort = params[:sort]
     sort_order = params[:sort_order]
     random_product = params[:random_product]
 
-    if sort_attribute && sort_attribute_desc
-      @products = Product.order(sort_attribute => sort_order)
+    if sort && sort_order
+      @products = Product.order(sort => sort_order)
     end
-    if params["discount"] == "true"
-      @products = Porduct.where("price < ?", 30)
+    if params["discount"]
+      @products = Product.where("price < ?", 30)
     end
     render 'index.html.erb'
   end
@@ -32,7 +32,8 @@ class ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
-      image: params[:image]
+      image: params[:image],
+      user_id: current_user.id
     )
     flash[:success] = 'New product has been created'
     redirect_to "/products"

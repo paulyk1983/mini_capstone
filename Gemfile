@@ -49,3 +49,6 @@ end
 
 # It allows you to create seed data files from the existing data in your database. see https://github.com/rroblak/seed_dump for details
 gem 'seed_dump'
+
+# Authentication gem
+gem 'devise'
