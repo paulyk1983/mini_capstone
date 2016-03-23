@@ -4,12 +4,14 @@ class ProductsController < ApplicationController
     sort = params[:sort]
     sort_order = params[:sort_order]
     random_product = params[:random_product]
-   
     if sort && sort_order
       @products = Product.order(sort => sort_order)
     end
     if params["discount"]
       @products = Product.where("price < ?", 30)
+    end
+    if params[:category]
+      @products = Category.find_by(name: params[:category]).products
     end
     render 'index.html.erb'
   end

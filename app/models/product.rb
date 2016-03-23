@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   has_many :orders
   has_many :users
   has_many :categorized_products
+  has_many :categories, through: :categorized_products
 
   def friendly_updated_at
     updated_at.strftime("%b %e, %l:%M %p")
@@ -23,5 +24,14 @@ class Product < ActiveRecord::Base
 
   def total
     price.to_i + tax
+  end
+
+  def printable_category_names
+    names = []
+    categories.each do |category|
+      names << category.name
+    end
+    names.join(", ")
+    # other way to write above code: names = categories.map { |category| category.name }.join(" ,")
   end
 end
