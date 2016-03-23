@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
     sort = params[:sort]
     sort_order = params[:sort_order]
     random_product = params[:random_product]
-
+   
     if sort && sort_order
       @products = Product.order(sort => sort_order)
     end

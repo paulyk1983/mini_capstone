@@ -76,9 +76,6 @@
       <%= message.html_safe %>  
     </div>
   <% end %>
-  <% if current_user %> 
-    <p>Welcome <%= current_user.email %></p>
-  <% end %>
   <%= yield %>
 </div>  
 

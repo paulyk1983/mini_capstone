@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   has_many :images
   has_many :orders
   has_many :users
+  has_many :categorized_products
 
   def friendly_updated_at
     updated_at.strftime("%b %e, %l:%M %p")

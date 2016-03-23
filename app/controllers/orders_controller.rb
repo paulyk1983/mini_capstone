@@ -13,12 +13,12 @@ class OrdersController < ApplicationController
       tax: tax,
       total: total
     )
+    flash[:success] = 'Order successfully created!'
     redirect_to "/orders/#{@order.id}"
   end
 
   def show
     @order = Order.last
     @image = Image.find_by(product_id: @order.product_id)
-    @product = Product.find_by(id: @order.product_id)
   end
 end
