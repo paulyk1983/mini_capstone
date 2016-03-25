@@ -20,7 +20,7 @@
 </div>
 <div class='well product'>
   <div class='row'>
-    <%= form_tag '/orders' do %>
+    <%= form_tag '/carted_products' do %>
       <div>
         <%= label_tag :quantity %>
         <%= text_field_tag :quantity %>
@@ -30,7 +30,7 @@
       </div>
         
       <div>
-        <button class="btn btn-success" type="submit">Buy Now</button>
+        <button class="btn btn-success" type="submit">Add To Cart</button>
       </div>
     <% end %>
   </div>
