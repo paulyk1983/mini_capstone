@@ -1,18 +1,11 @@
-
+<h1>Your Order</h1>
 <span class='order-page'>
-  <div class='row'>
-    <div class='col-xs-12 col-sm-4'>
-      <h2><%= @order.product.name %></h2>
-      <img class='img-responsive' src="<%= @image.src %>">
+  <% @orders.carted_products.each do |carted_product| %>
+    <div class='row'>
+      <div class='col-xs-12 col-sm-4'>
+        <h2><%= carted_product.product.name %></h2>
+        <p>Quantity: <%= carted_product.quantity %></p>
+      </div>
     </div>
-    <div class='col-xs-12 col-sm-6'>
-      <h1><%= current_user.email %>Your Order Info</h1>
-      <p>Order Id: <%= @order.id %></p>
-      <p>Quantity: <%= @order.quantity %></p>
-      <p>Subtotal: <%= @order.subtotal %></p>
-      <p>Tax: <%= @order.tax %></p>
-      <p>Total: <%= @order.total %></p>
-      <p>Created On: <%= @order.created_at %></p>
-    </div>
-  </div>
+  <% end %>  
 </span>

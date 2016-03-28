@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
     @carted_products.each do |carted_product|
       product_total = carted_product.quantity * carted_product.product.price
       subtotal = subtotal + product_total
+      carted_product.update(status: "purchased")
     end
   
     tax = subtotal * 0.09
@@ -23,7 +24,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.last
-    @image = Image.find_by(product_id: @order.product_id)
+    @orders = current_user.orders.last
   end
 end
