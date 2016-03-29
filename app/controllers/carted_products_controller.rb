@@ -1,4 +1,6 @@
 class CartedProductsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     quantity = params[:quantity]
     @product = Product.find_by(id: params[:product_id])

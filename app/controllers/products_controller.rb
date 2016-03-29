@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_admin!, except: [:index, :show]
+
   def index
     @products = Product.all
     sort = params[:sort]
@@ -72,4 +74,12 @@ class ProductsController < ApplicationController
    # @products = Product.where("name LIKE ?", "%#{ search_term }%")
    # render 'index.html.erb'
   #end
+
+  private
+
+  def authenticate_admin!
+    unless current_user && current_user.admin
+      redirect_to '/'
+    end
+  end
 end
