@@ -1,11 +1,17 @@
 <h1>Your Order</h1>
 <span class='order-page'>
-  <% @orders.carted_products.each do |carted_product| %>
+  <% @carted_products.each do |carted_product| %>
     <div class='row'>
       <div class='col-xs-12 col-sm-4'>
-        <h2><%= carted_product.product.name %></h2>
-        <p>Quantity: <%= carted_product.quantity %></p>
+        <h2><%= carted_product.product.name %> (<%= carted_product.product.price %> X <%= carted_product.quantity %>)</h2>       
       </div>
     </div>
-  <% end %>  
+  <% end %>
+  <div class='row'>
+      <div class='col-xs-12 col-sm-4'>
+        <h2>Subtotal: <%= @order.subtotal %></h2>
+        <h2>Tax: <%= @order.tax %></h2>
+        <h2>Total: <%= @order.total %></h2>   
+      </div>
+    </div>    
 </span>

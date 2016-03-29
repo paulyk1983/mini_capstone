@@ -17,5 +17,9 @@ class CartedProductsController < ApplicationController
 
   def index
     @carted_products = current_user.carted_products.where(status: "carted")
+    if @carted_products.empty?
+      flash[:warning] = "There are no items in your cart"
+      redirect_to '/'      
+    end
   end
 end
