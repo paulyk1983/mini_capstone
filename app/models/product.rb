@@ -9,6 +9,10 @@ class Product < ActiveRecord::Base
   has_many :categorized_products
   has_many :categories, through: :categorized_products
 
+  validates :name, :supplier_id, :title, :price, presence: true
+  validates :name, uniqueness: true
+  validates :price, numericality: { only_decimal: true, greater_than: 0 }
+
   def friendly_updated_at
     updated_at.strftime("%b %e, %l:%M %p")
   end

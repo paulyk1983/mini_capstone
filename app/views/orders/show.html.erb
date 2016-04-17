@@ -1,5 +1,12 @@
 <h1>Your Order</h1>
 <span class='order-page'>
+  <hr>
+  <div class='row'>
+    <div class='col-xs-12 col-sm-4'>
+      <h2><%= @carted_products.first.product.price %></h2>
+    </div>
+  </div>
+  <hr>
   <% @carted_products.each do |carted_product| %>
     <div class='row'>
       <div class='col-xs-12 col-sm-4'>

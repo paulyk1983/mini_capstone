@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
     if params[:category]
       @products = Category.find_by(name: params[:category]).products
     end
+    @images = Image.all
     render 'index.html.erb'
   end
 
@@ -29,18 +30,31 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product = Product.new
+    @suppliers = Supplier.all
   end
 
   def create
-    product = Product.create(
+    @suppliers = Supplier.all
+    @product = Product.create(
+      title: params[:title],
       name: params[:name],
       price: params[:price],
       description: params[:description],
-      image: params[:image],
-      user_id: current_user.id
+      user_id: current_user.id,
+      supplier_id: params[:supplier][:supplier_id]
     )
-    flash[:success] = 'New product has been created'
-    redirect_to "/products"
+    if @product.save
+      @image = Image.new(src: params[:image_src], product_id: @product.id)
+      if @image.save
+        flash[:success] = 'New product has been created'
+        redirect_to "/products"
+      else
+        render 'new.html.erb'
+      end
+    else
+      render "new.html.erb"
+    end
   end
 
   def edit
@@ -52,13 +66,17 @@ class ProductsController < ApplicationController
     product_id = params[:id]
     @product = Product.find_by(id: product_id)
     @product.update(
+      title: params[:title],
       name: params[:name],
       price: params[:price],
-      description: params[:description],
-      image: params[:image]
+      description: params[:description]
     )
-    flash[:success] = 'Product has been updated'
-    redirect_to "/products/#{product_id}"    
+    if @product.update(title: params[:title], name: params[:name], price: params[:price], description: params[:description])
+      flash[:success] = 'Product has been updated'
+      redirect_to "/products/#{product_id}" 
+    else
+      render "edit.html.erb"
+    end
   end
 
   def destroy
